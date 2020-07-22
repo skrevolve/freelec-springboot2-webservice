@@ -1,2 +1,2 @@
 # freelec-springboot2-webservice
-- my first springboot project by IntelliJ
+- my first springboot project with IntelliJ
