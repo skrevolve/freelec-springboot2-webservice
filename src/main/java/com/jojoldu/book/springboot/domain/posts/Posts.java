@@ -29,6 +29,11 @@ public class Posts {
         this.content = content;
         this.author = author;
     }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
 //Entity 클래스 에서는 절대 Setter 메소드 를 만들지 않는다.
 //만약 값 변경이 필요 하면 명확히 목적과 의도를 나타 내도록 한다.
