@@ -1,7 +1,9 @@
 package com.jojoldu.book.springboot.web.dto;
 
 import com.jojoldu.book.springboot.domain.posts.Posts;
+import lombok.Getter;
 
+@Getter //검색시 GET
 public class PostsResponseDto {
 
     private Long id;
