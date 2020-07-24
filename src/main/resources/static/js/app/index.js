@@ -53,7 +53,7 @@ var main = {
         });
     },
     delete : function () {
-        var id = ('#id').val();
+        var id = $('#id').val();
 
         $.ajax({
             type: 'DELETE',
