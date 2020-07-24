@@ -47,4 +47,11 @@ public class PostsService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
+    public void delete (Long id) {
+        Posts posts = postsRepository.findById(id).orElseThrow(() -> new
+                IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        postsRepository.delete(posts); //jpaRepository에서 이미 삭제 메소드를 지원중이기때문에 활용.
+    }
 }
