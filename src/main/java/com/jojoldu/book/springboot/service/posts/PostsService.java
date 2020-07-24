@@ -2,13 +2,16 @@ package com.jojoldu.book.springboot.service.posts;
 
 import com.jojoldu.book.springboot.domain.posts.Posts;
 import com.jojoldu.book.springboot.domain.posts.PostsRepository;
+import com.jojoldu.book.springboot.web.dto.PostsListResponseDto;
 import com.jojoldu.book.springboot.web.dto.PostsResponseDto;
 import com.jojoldu.book.springboot.web.dto.PostsSaveRequestDto;
 import com.jojoldu.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor //모든 필드를 인자값으로 하는 생성자(롬복)
 @Service
@@ -35,4 +38,13 @@ public class PostsService {
 
         return new PostsResponseDto(entity);
     }
+
+    //postsRepository 결과로 넘어온 Posts의 stream을 map을 통해 PostsListResponseDto변환 -> List로 반환하는 메소드
+    @Transactional(readOnly = true) //트랜젹션 범위 유지 + 조회 속도 개선
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new) //.map(posts -> new PostsListResponseDto(posts))
+                .collect(Collectors.toList());
+    }
+
 }
