@@ -4,6 +4,9 @@ var main = {
         $('#btn-save').on('click', function () {
             _this.save();
         });
+        $('#btn-update').on('click', function () {
+            _this.update();
+        });
     },
     save : function () {
         var data = {
@@ -24,7 +27,31 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
+    },
+    update : function () {
+        var data = {
+            title: $('#title').val(),
+            content: $('#content').val()
+        };
+
+        var id = $('#id').val();
+
+        $.ajax({
+            type: 'PUT', //PostsApiController 에서 @PutMapping했기 때문에 REST규약에 맞게 설정.
+            url: '/api/v1/posts/' + id,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('글이 수정되었습니다.');
+            window.location.href = '/';
+        }).fail(function() {
+            alert(JSON.stringify(error));
+        });
     }
 };
 
 main.init();
+
+// REST에서 CRUD는 다음과 같이 HTTP 메소드에 매핑된다
+// 생성(POST),읽기(GET),수정(PUT),삭제(DELETE)
