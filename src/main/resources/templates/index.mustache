@@ -14,9 +14,13 @@
                 {{/userName}}
                 <!--^는 존재하지 않는경우에 쓰인다. userName이 없다면 로그인 버튼 활성화-->
                 {{^userName}}
-                    <!--스크링 시큐리티에서 기본적으로 제공하는 로그인 URL이다-->
+                    <!--스크링 시큐리티에서 기본적으로 제공하는 로그인 URL이다 /oauth2/authorization-->
                     <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">
                         Google Login
+                    </a>
+                    <!--application-oauth.properties에 등록한 redirect-uri값에 맞춰 자동으로 등록된다-->
+                    <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">
+                        Naver Login
                     </a>
                 {{/userName}}
             </div>
