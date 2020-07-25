@@ -20,4 +20,3 @@ public class WebConfig implements WebMvcConfigurer {
         argumentResolvers.add(loginUserArgumentResolver);
     }
 }
-
